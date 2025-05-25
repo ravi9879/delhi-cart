@@ -1,22 +1,27 @@
-import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
-import Ame from './files/Ame'
-import Sample from './files/Sample'  
-import './files/Style.css'
+import Cart from './files/Cart' ;  
+import Login from './files/Login'; 
+import Signin from './files/Sign-in';
+import Product from './files/Product'; 
+import Home from './files/Home'
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom' ;   
 
 function App() {
-  return ( 
-    <>
-      <Router>
-        <div>
-          <Routes>
-            <Route path="/" element={<Ame />} />
-            <Route path="/server" element={<Sample />} />
-          </Routes>
-        </div>
+  
+  return (
+    <div>     
+      <Router> 
+        <Routes>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='/cart' element={<Cart />}></Route>
+          <Route path='/' element={<Home />}></Route>  
+          <Route path='/sign-in' element={<Signin />}></Route>
+          <Route path='/pro' element={<Product />}></Route>
+        </Routes> 
       </Router>
-    </>
-  );
-}
+    </div> 
+  )}
+ 
 
-export default App;
+export default App ;
+ 
