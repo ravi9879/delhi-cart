@@ -1,9 +1,18 @@
 
-import React, { useState } from "react";
-import { Link} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Nav() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Call your backend to check login status
+    axios.get("https://ecom-ten-blue.vercel.app/check-auth", { withCredentials: true })
+      .then(res => setIsLoggedIn(res.data.loggedIn))
+      .catch(() => setIsLoggedIn(false));
+  }, []);
 
   return (
     <header className="bg-blue-900 shadow sticky top-0 z-50">
@@ -64,19 +73,33 @@ function Nav() {
             </svg>
             Home
           </Link>
-          <Link
-            to="/login"
-            className="bg-white text-blue-700 font-semibold px-4 py-1 rounded hover:bg-blue-100 transition text-sm"
-          >
-            Login
-          </Link>
+          {/* Show Login only if NOT logged in */}
+          {!isLoggedIn && (
+            <Link
+              to="/login"
+              className="bg-white text-blue-700 font-semibold px-4 py-1 rounded transition text-sm hover:bg-blue-100"
+            >
+              Login
+            </Link>
+          )}
           <button className="text-white hover:underline text-sm hidden md:inline">Become a Seller</button>
-          <div className="relative group">
+          {isLoggedIn &&(
+            <>
+            <button
+              to="/logout"
+              className="bg-white text-blue-700 font-semibold px-4 py-1 rounded transition text-sm hover:bg-blue-100"
+            >
+              Logout
+            </button>
+          <div className="relative group"> 
             <Link to="/profile" className="flex items-center gap-2 text-white hover:text-yellow-300 text-sm">
               <span className="bg-yellow-400 text-blue-900 rounded-full w-7 h-7 flex items-center justify-center font-bold">R</span>
               Profile
             </Link>
+            
           </div>
+          </>
+          )}
           <Link
             to="/cart"
             className="flex items-center gap-1 text-white hover:text-blue-200 transition text-sm"
@@ -118,13 +141,16 @@ function Nav() {
                   </svg>
                   Home
                 </Link>
-                <Link
-                  to="/login"
-                  className="font-semibold text-base text-blue-900 hover:text-blue-700"
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  Login
-                </Link>
+                {!isLoggedIn && (
+                  <Link
+                    to="/login"
+                    className="font-semibold text-base text-blue-900 hover:text-blue-700"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Login
+                  </Link>
+                )}
+                {isLoggedIn && (
                 <Link
                   to="/profile"
                   className="flex items-center gap-2 text-blue-900 font-semibold text-base hover:text-blue-700"
@@ -133,6 +159,7 @@ function Nav() {
                   <span className="bg-yellow-400 text-blue-900 rounded-full w-7 h-7 flex items-center justify-center font-bold">R</span>
                   Profile
                 </Link>
+                )}
                 <Link
                   to="/cart"
                   className="flex items-center gap-2 text-blue-900 font-semibold text-base hover:text-blue-700"
@@ -169,3 +196,4 @@ function Nav() {
 }
 
 export default Nav;
+

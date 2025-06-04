@@ -16,17 +16,19 @@ export default function Lo() {
     try {
       axios
         .post("https://ecom-ten-blue.vercel.app/login/", {
+        // .post("http://localhost:800/login", {  
           email_id: email_id,
           password: password,
-        })
+        }, {withCredentials: true})  
         .then((res) => {
           setLoading(false);
           if (res.data.Status === "Success") {
-            window.localStorage.setItem("token", res.data.token);
+            window.localStorage.setItem("token", res.data.token); 
+            document.cookie = `token=${res.data.token}; path=/; max-age=${60 * 60 * 24 * 7}`;
             av("/");
           } else {
             av("/si");
-          }
+          }  
         })
         .catch(() => setLoading(false));
     } catch (error) {

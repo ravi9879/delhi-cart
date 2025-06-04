@@ -1,11 +1,24 @@
 import { Link } from "react-router-dom";
-import Nav from "./Nav"; 
+import Nav from "./Nav";
 import Product from "./Product";
 import Footer from "./Footer";
 
 function Home() {
   // Category data for section 1
-  
+  // const allCookies = document.cookie;
+
+  // // To get a specific cookie value (e.g., "token")
+  // function getCookie(name) {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+  //   if (parts.length === 2) return parts.pop().split(';').shift();
+  // }
+
+  // // Usage:
+  // const token = getCookie("token");
+  // console.log(token , allCookies);
+
+
   const categories = [
     { name: "Top Offers", img: "https://rukminim1.flixcart.com/fk-p-flap/128/128/image/178cf5a874cd697a.png?q=100" },
     { name: "Mobiles & Tablets", img: "https://rukminim1.flixcart.com/fk-p-flap/128/128/image/e2268d56d09df684.png?q=100" },
@@ -19,7 +32,7 @@ function Home() {
   ];
 
   // Example product data
-  
+
   // Banner images for section 5
   const banners = [
     "https://rukminim1.flixcart.com/fk-p-flap/960/960/image/d78dda604e158c5c.jpg?q=50",
@@ -60,8 +73,8 @@ function Home() {
       </section>
 
       {/* Product Section */}
-      <Product/>
-      
+      <Product />
+
       {/* Banners Carousel */}
       <section className="w-full px-2 mb-10">
         <div className="w-full max-w-[890px] mx-auto flex gap-3 sm:gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-blue-200">
@@ -78,8 +91,8 @@ function Home() {
       </section>
 
       {/* Footer */}
-      <Footer/>
-      
+      <Footer />
+
     </>
   );
 }
