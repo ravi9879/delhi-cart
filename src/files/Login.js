@@ -24,7 +24,7 @@ export default function Lo() {
           setLoading(false);
           if (res.data.Status === "Success") {
             window.localStorage.setItem("token", res.data.token); 
-            document.cookie = `token=${res.data.token}; path=/; max-age=${60 * 60 * 24 * 7}`;
+            // document.cookie = `token=${res.data.token}; path=/; max-age=${60 * 60 * 24 * 7}`;
             av("/");
           } else {
             av("/si");
