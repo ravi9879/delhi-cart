@@ -74,7 +74,7 @@ function Nav() {
             Home
           </Link>
           {/* Show Login only if NOT logged in */}
-          {!isLoggedIn && (
+          {!isLoggedIn && ( 
             <Link
               to="/login"
               className="bg-white text-blue-700 font-semibold px-4 py-1 rounded transition text-sm hover:bg-blue-100"
